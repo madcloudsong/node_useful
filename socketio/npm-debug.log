@@ -1,0 +1,97 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '-g' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.35
+4 verbose cache add [ '.', null ]
+5 verbose cache add name=undefined spec="." args=[".",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: '.',
+6 verbose parsed url   path: '.',
+6 verbose parsed url   href: '.' }
+7 silly lockFile 3a52ce78- .
+8 verbose lock . /Users/madcloud/.npm/3a52ce78-.lock
+9 verbose tar pack [ '/Users/madcloud/.npm/socketio/1.0.0/package.tgz', '.' ]
+10 verbose tarball /Users/madcloud/.npm/socketio/1.0.0/package.tgz
+11 verbose folder .
+12 info prepublish socketio@1.0.0
+13 silly lockFile 1f1177db-tar tar://.
+14 verbose lock tar://. /Users/madcloud/.npm/1f1177db-tar.lock
+15 silly lockFile e32ba46f-d-npm-socketio-1-0-0-package-tgz tar:///Users/madcloud/.npm/socketio/1.0.0/package.tgz
+16 verbose lock tar:///Users/madcloud/.npm/socketio/1.0.0/package.tgz /Users/madcloud/.npm/e32ba46f-d-npm-socketio-1-0-0-package-tgz.lock
+17 silly lockFile 1f1177db-tar tar://.
+18 silly lockFile 1f1177db-tar tar://.
+19 silly lockFile e32ba46f-d-npm-socketio-1-0-0-package-tgz tar:///Users/madcloud/.npm/socketio/1.0.0/package.tgz
+20 silly lockFile e32ba46f-d-npm-socketio-1-0-0-package-tgz tar:///Users/madcloud/.npm/socketio/1.0.0/package.tgz
+21 silly lockFile 701195e6-cloud-npm-socketio-1-0-0-package /Users/madcloud/.npm/socketio/1.0.0/package
+22 verbose lock /Users/madcloud/.npm/socketio/1.0.0/package /Users/madcloud/.npm/701195e6-cloud-npm-socketio-1-0-0-package.lock
+23 silly lockFile 701195e6-cloud-npm-socketio-1-0-0-package /Users/madcloud/.npm/socketio/1.0.0/package
+24 silly lockFile 701195e6-cloud-npm-socketio-1-0-0-package /Users/madcloud/.npm/socketio/1.0.0/package
+25 silly lockFile 3a52ce78- .
+26 silly lockFile 3a52ce78- .
+27 silly resolved [ { name: 'socketio',
+27 silly resolved     version: '1.0.0',
+27 silly resolved     description: 'test socketio',
+27 silly resolved     main: 'index.js',
+27 silly resolved     scripts: { test: 'echo "Error: no test specified" && exit 1' },
+27 silly resolved     author: { name: 'cloudysong' },
+27 silly resolved     license: 'ISC',
+27 silly resolved     dependencies:
+27 silly resolved      { 'body-parser': '~1.12.0',
+27 silly resolved        'cookie-parser': '~1.3.4',
+27 silly resolved        debug: '~2.1.1',
+27 silly resolved        ejs: '~2.3.1',
+27 silly resolved        express: '~4.12.2',
+27 silly resolved        morgan: '~1.5.1',
+27 silly resolved        'serve-favicon': '~2.2.0',
+27 silly resolved        'express-session': 'latest',
+27 silly resolved        multer: 'latest' },
+27 silly resolved     readme: 'ERROR: No README data found!',
+27 silly resolved     _id: 'socketio@1.0.0',
+27 silly resolved     _shasum: '02cd38d32cd8258f9b1d56d139c675fc9adfcffd',
+27 silly resolved     _from: '.' } ]
+28 info install socketio@1.0.0 into /usr/local/lib
+29 info installOne socketio@1.0.0
+30 verbose lib/node_modules/socketio unbuild
+31 verbose tar unpack /Users/madcloud/.npm/socketio/1.0.0/package.tgz
+32 silly lockFile ffb35d6c--local-lib-node-modules-socketio tar:///usr/local/lib/node_modules/socketio
+33 verbose lock tar:///usr/local/lib/node_modules/socketio /Users/madcloud/.npm/ffb35d6c--local-lib-node-modules-socketio.lock
+34 silly lockFile e32ba46f-d-npm-socketio-1-0-0-package-tgz tar:///Users/madcloud/.npm/socketio/1.0.0/package.tgz
+35 verbose lock tar:///Users/madcloud/.npm/socketio/1.0.0/package.tgz /Users/madcloud/.npm/e32ba46f-d-npm-socketio-1-0-0-package-tgz.lock
+36 silly gunzTarPerm modes [ '755', '644' ]
+37 error Error: EACCES, mkdir '/usr/local/lib/node_modules/socketio'
+37 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules/socketio']
+37 error   errno: 3,
+37 error   code: 'EACCES',
+37 error   path: '/usr/local/lib/node_modules/socketio',
+37 error   fstream_type: 'Directory',
+37 error   fstream_path: '/usr/local/lib/node_modules/socketio',
+37 error   fstream_class: 'DirWriter',
+37 error   fstream_stack:
+37 error    [ '/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+37 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53',
+37 error      'Object.oncomplete (fs.js:108:15)' ] }
+38 error Please try running this command again as root/Administrator.
+39 error System Darwin 14.1.0
+40 error command "node" "/usr/local/bin/npm" "install" "-g"
+41 error cwd /Users/madcloud/Documents/git/node_useful/socketio
+42 error node -v v0.10.35
+43 error npm -v 1.4.28
+44 error path /usr/local/lib/node_modules/socketio
+45 error fstream_path /usr/local/lib/node_modules/socketio
+46 error fstream_type Directory
+47 error fstream_class DirWriter
+48 error code EACCES
+49 error errno 3
+50 error stack Error: EACCES, mkdir '/usr/local/lib/node_modules/socketio'
+51 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+51 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53
+51 error fstream_stack Object.oncomplete (fs.js:108:15)
+52 verbose exit [ 3, true ]

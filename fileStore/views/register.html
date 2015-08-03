@@ -1,0 +1,109 @@
+<% include common/header.html %>
+<h1><%= title %></h1>
+<p>Welcome to <%= title %></p>
+
+<div id="container" class="container">
+    <% if (locals.success) { %>
+    <div id="alt_sucess" class="alert alert-success">
+        <%- success %>
+    </div>
+    <% } %>
+
+    <% if (locals.error) { %>
+    <div id="alt_warning" class="alert alert-warning">
+        <%= error %>
+    </div>
+    <% } %>
+
+    <form class="form-signin" role="form" method="post">
+        <h4 class="form-signin-heading">Register</h4>
+
+        <div class="control-group form-inline">
+            <label class="control-label">Username</label>
+            <input id="txtUserName" name="txtUserName" type="text"
+                   class="form-control" placeholder="Username" required
+                   autofocus/>
+        </div>
+        <div class="control-group form-inline">
+            <label class="control-label">Password</label>
+            <input id="txtUserPwd" name="txtUserPwd" type="password" class="form-control" placeholder="Password" required/>
+        </div>
+        <div class="control-group form-inline">
+            <label class="control-label">Pwd again</label>
+            <input id="txtUserRePwd" name="txtUserRePwd" type="password" class="form-control" placeholder="Pwd again"
+                   required/>
+        </div>
+        <button id="btnSub" class="btn btn-lg btn-primary" type="submit">register</button>
+        <a class="btn btn-link" href="/login" role="button">Login</a>
+    </form>
+
+</div>
+
+<script type="text/javascript">
+    String.prototype.format = function (args) {
+        var result = this;
+        if (arguments.length > 0) {
+            if (arguments.length == 1 && typeof (args) == "object") {
+                for (var key in args) {
+                    if (args[key] != undefined) {
+                        var reg = new RegExp("({" + key + "})", "g");
+                        result = result.replace(reg, args[key]);
+                    }
+                }
+            }
+            else {
+                for (var i = 0; i < arguments.length; i++) {
+                    if (arguments[i] != undefined) {
+                        var reg = new RegExp("({)" + i + "(})", "g");
+                        result = result.replace(reg, arguments[i]);
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    $(function () {
+        $('#btnSub').on('click', function () {
+            var
+                    $txtUserName = $('#txtUserName'),
+                    txtUserNameVal = $.trim($txtUserName.val()),
+                    $txtUserPwd = $('#txtUserPwd'),
+                    txtUserPwdVal = $.trim($txtUserPwd.val()),
+                    $txtUserRePwd = $('#txtUserRePwd'),
+                    txtUserRePwdVal = $.trim($txtUserRePwd.val()),
+                    errorTip = '<div id="errorTip" class="alert alert-warning">{0}</div> ';
+
+            $("#errorTip,#alt_sucess,#alt_warning").remove();
+
+            if (txtUserNameVal.length == 0) {
+                $("#container").prepend(errorTip.format('Username cannot be empty!'));
+                $txtUserName.focus();
+                return false;
+            }
+
+            if (txtUserPwdVal.length == 0) {
+                $("#container").prepend(errorTip.format('Password cannot be empty!'));
+                $txtUserPwd.focus();
+                return false;
+            }
+
+            if (txtUserRePwdVal.length == 0) {
+                $("#container").prepend(errorTip.format('Pwd again cannot be empty!'));
+                $txtUserRePwd.focus();
+                return false;
+            }
+
+            if (txtUserPwdVal != txtUserRePwdVal) {
+                $("#container").prepend(errorTip.format('Two password are not equal!'));
+                $txtUserPwd.focus();
+                return false;
+            }
+
+            return true;
+        })
+    });
+
+</script>
+
+<% include common/footer.html %>

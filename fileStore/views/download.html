@@ -1,0 +1,20 @@
+<% include common/header.html %>
+<h1><%= title %></h1>
+
+<% if (locals.error) { %>
+<div id="alt_warning" class="alert alert-warning">
+    <%= error %>
+</div>
+<% } %>
+<form class="form-signin" role="form" method="post">
+    <h4 class="form-signin-heading">Download</h4>
+    <div class="control-group form-inline">
+        <label class="control-label">File Code</label>
+        <input id="code" name="code" type="text" class="form-control" placeholder="File Code" required
+               autofocus/>
+    </div>
+
+    <button id="btnSub" class="btn btn-lg btn-primary" type="submit">Download</button>
+
+</form>
+<% include common/footer.html %>

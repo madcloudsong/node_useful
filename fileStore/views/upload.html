@@ -1,0 +1,19 @@
+<% include common/header.html %>
+<h1><%= title %></h1>
+<% if (locals.error) { %>
+<div id="alt_warning" class="alert alert-warning">
+    <%= error %>
+</div>
+<% } %>
+<form action="./upload" method="post"
+      enctype="multipart/form-data">
+    <label for="file">Filename:</label>
+    <input type="file" name="file" id="file" />
+    <br />
+    <label for="endTime">Reserve Time</label>
+    <input type="radio" name="endTime" value="3" checked="checked" />3days
+    <input type="radio" name="endTime" value="7" />7days
+    <br />
+    <input type="submit" name="submit" value="Submit" />
+</form>
+<% include common/footer.html %>

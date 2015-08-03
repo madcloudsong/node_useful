@@ -1,0 +1,20 @@
+<% include common/header.html %>
+<p>Manage Page</p>
+<table class="table table-bordered">
+    <tr><th>File name</th><th>File code</th><th>End Time</th><th>Operate</th></tr>
+    <% for(i in list) {%>
+
+    <% if(list[i] != undefined && list[i]['endTime'] > new Date().getTime()) {%>
+    <tr>
+        <td>
+            <%= list[i]["name"] %>
+        </td>
+
+        <td><%=i  %></td>
+        <td><%= new Date(list[i]["endTime"]) %></td>
+        <td><a href="/manage/del?id=<%=i%>">delete</a></td>
+    </tr>
+    <% } %>
+    <% } %>
+</table>
+<% include common/footer.html %>
