@@ -106,6 +106,6 @@ JDB.deleteFile = function deleteFile(userName, id) {
     save();
 };
 
-loadDB(checkNeedInit);
+//loadDB(checkNeedInit);
 
 module.exports = JDB;

@@ -1,0 +1,29 @@
+{
+  "appenders": [
+	{
+		"type": "multiprocess",
+		"mode": "worker",
+		"category": "ACCESS",
+		"loggerHost": "localhost",
+		"loggerPort": 5001
+	}, {
+		"type": "multiprocess",
+		"mode": "worker",
+		"category": "APP",
+		"loggerHost": "localhost",
+		"loggerPort": 5002
+	}, {
+		"type": "multiprocess",
+		"mode": "worker",
+		"category": "ERROR",
+		"loggerHost": "localhost",
+		"loggerPort": 5003
+	}, {
+		"type": "multiprocess",
+		"mode": "worker",
+		"category": "RESULT",
+		"loggerHost": "localhost",
+		"loggerPort": 5004
+	}
+  ]
+}

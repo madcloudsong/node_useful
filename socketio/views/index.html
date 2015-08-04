@@ -1,3 +1,31 @@
 <% include common/header.html %>
+<script type="text/javascript" src="/javascripts/socket.io.min.js"></script>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 <p>Home Page</p>
+
+<script>
+    $(function(){
+        var socket = new io.connect("http://localhost:8100");
+
+        socket.on("connect", function(){
+            $("#transportName").text("connect via " + socket.socket.transport.name);// 接続時に接続方式表示
+        });
+
+        socket.on("message", function(message){
+            $("<li>").text(message).prependTo($("#messageArea ul"));// 受信メッセージをレンダリング
+        });
+
+        $("#submitButton").click(function(event){
+            socket.emit("message", $("#msg").val());// 入力メッセージをサーバへ
+        });
+    });
+</script>
+</head>
+<body>
+<div id="transportName"></div>
+<textarea id="msg" rows="10" cols="100"></textarea><br />
+<input id="submitButton" type="button" value="submit!">
+<div id="messageArea">
+    <ul></ul>
+</div>
 <% include common/footer.html %>

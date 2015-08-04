@@ -1,0 +1,57 @@
+{
+  "appenders": [
+	{
+		"type": "multiprocess",
+		"mode": "master",
+		"loggerHost": "localhost",
+		"loggerPort": 5001,
+		"appender": {
+			"type": "dateFile",
+			"category": "ACCESS",
+			"filename": "logs/access.log",
+			"pattern": "-yyyy-MM-dd",
+			"layout": {
+				"type": "pattern",
+				"pattern": "%m"
+			}
+		}
+	}, {
+		"type": "multiprocess",
+		"mode": "master",
+		"loggerHost": "localhost",
+		"loggerPort": 5002,
+		"appender": {
+			"type": "dateFile",
+			"category": "APP",
+			"filename": "logs/app.log",
+			"pattern": "-yyyy-MM-dd"
+		}
+	}, {
+		"type": "multiprocess",
+		"mode": "master",
+		"loggerHost": "localhost",
+		"loggerPort": 5003,
+		"appender": {
+			"type": "dateFile",
+			"category": "ERROR",
+			"filename": "logs/error.log",
+			"pattern": "-yyyy-MM-dd"
+		}
+	}, {
+		"type": "multiprocess",
+		"mode": "master",
+		"loggerHost": "localhost",
+		"loggerPort": 5004,
+		"appender": {
+			"type": "dateFile",
+			"category": "RESULT",
+			"filename": "logs/result.log",
+			"pattern": "-yyyy-MM-dd",
+			"layout": {
+				"type": "pattern",
+				"pattern": "%m"
+			}
+		}
+	}
+  ]
+}
