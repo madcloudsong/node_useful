@@ -5,18 +5,45 @@
 
 <script>
     $(function(){
+        var userid = prompt("input userid");
         var socket = new io.connect("http://localhost:8100");
+        var roomid = prompt("input roomid");
+
+        var addMsg = function(msg) {
+            $("<li>").text(msg).prependTo($("#messageArea ul"));
+        };
+
+        var sendMsg = function(json) {
+            var t = JSON.stringify(json);
+            console.log(t);
+            socket.emit("message", t);
+        };
+
+        addMsg("hello " + userid);
 
         socket.on("connect", function(){
-            $("#transportName").text("connect via " + socket.socket.transport.name);// 接続時に接続方式表示
+            $("#transportName").text("connect via " + socket.socket.transport.name);
+            var data = {
+                uri: 'joinroom',
+                userId: userid,
+                roomId: roomid
+            };
+            sendMsg(data);
         });
 
         socket.on("message", function(message){
-            $("<li>").text(message).prependTo($("#messageArea ul"));// 受信メッセージをレンダリング
+            addMsg(message);
         });
 
         $("#submitButton").click(function(event){
-            socket.emit("message", $("#msg").val());// 入力メッセージをサーバへ
+            msg = $("#msg").val();
+            var data = {
+                uri: 'msg',
+                userId: userid,
+                roomId: roomid,
+                msg: msg
+            };
+            sendMsg(data);
         });
     });
 </script>
