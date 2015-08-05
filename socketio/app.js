@@ -11,6 +11,8 @@ var session = require('express-session');
 var async = require('async');
 var http = require('http');
 require('node-ka-patch');
+var numCpus = require('os').cpus().length;
+console.log('cpus: ' + numCpus);
 
 var config = require('./config/common');
 var util = require('./modules/util');
@@ -379,8 +381,21 @@ function cleanup(socket) {
 function joinroom(param, socket) {
     console.log("workerid" + cluster.worker.id);
     socket.join(param['roomId']);
-    var data = {msg: param['userId'] + " enter room: " + param['roomId']};
-    socket.broadcast.emit('message', JSON.stringify(data));
+    //send to current user
+    var data0 = {msg: "welcome! room: " + param['userId'] + " enter room: " + param['roomId']};
+    socket.emit('message', JSON.stringify(data0));
+    //broad to room including current user
+    var data = {msg: "room: " + param['userId'] + " enter room: " + param['roomId']};
+    io.sockets.in(param['roomId']).emit('message', JSON.stringify(data));
+    //broad to all including current user
+    var data2 = {msg: "broad: " + param['userId'] + " enter room: " + param['roomId']};
+    io.sockets.emit('message', JSON.stringify(data2));
+    //broad to room except current user
+    var data3 = {msg: "other see: " + param['userId'] + " enter room: " + param['roomId']};
+    socket.broadcast.emit('message', JSON.stringify(data3));
+    //broad to all except current user
+    var data4 = {msg: "other room see: " + param['userId'] + " enter room: " + param['roomId']};
+    socket.broadcast.to(param['roomId']).emit('message', JSON.stringify(data4));
     //socket.to(param['roomId']).emit('message', JSON.stringify(data));
     //io.socket.in(param['roomId']).emit('message', JSON.stringify(data));
     console.log(param['userId'] + " enter room: " + param['roomId']);
@@ -388,9 +403,12 @@ function joinroom(param, socket) {
 
 function sendmsg(param, socket) {
     console.log("workerid" + cluster.worker.id);
-    var data = {msg: param['userId'] + " say in room " + param['roomId'] + ": " + param['msg']};
+    var data = {msg: "broad: " + param['userId'] + " say in room " + param['roomId'] + ": " + param['msg']};
     console.log(param['userId'] + " room " + param['roomId'] + " say " + param['msg']);
-    socket.to(param['roomId']).emit('message', JSON.stringify(data));
+    io.sockets.emit(param['roomId']).emit('message', JSON.stringify(data));
+
+    var data2 = {msg: "room: " + param['userId'] + " say in room " + param['roomId'] + ": " + param['msg']};
+    io.sockets.in(param['roomId']).emit(param['roomId']).emit('message', JSON.stringify(data2));
 }
 
 
