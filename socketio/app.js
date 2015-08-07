@@ -129,9 +129,8 @@ if (cluster.isMaster) {
 //      });
 //    });
 //  }
-//
-// production error handler
-// no stacktraces leaked to user
+
+
     app.use(function (err, req, res, next) {
         res.status(err.status || 500);
         res.render('error', {
@@ -139,6 +138,7 @@ if (cluster.isMaster) {
             error: {}
         });
     });
+    //create express and socketio server
     (function () {
         var callee = arguments.callee;
         server = http.createServer(app);
@@ -155,6 +155,7 @@ if (cluster.isMaster) {
         });
     })();
     io = require('socket.io').listen(server);
+    ///////
 
 
     //if ('production' == app.get('env')) {
@@ -203,15 +204,6 @@ if (cluster.isMaster) {
         redisClient: store
     }));
 
-    // グレイスフルタイムを過ぎたworkerは全てのセッションをクローズする
-//	process.on('message', function(msg) {
-//		console.log("debug !!!!!!!!");
-//		if(msg === 'closed') {
-//			console.log("worker "+cluster.worker.id+" closed");
-//      		io.sockets.clients().forEach(function (socket) { socket.disconnect(); })
-//    	}
-//  });
-    // クラスター切断時、接続数をチェックし0ならプロセス終了
     cluster.on('disconnect', function (worker) {
         closedtimer = 0;
         logger.info_log("debug !!!!!" + cluster.worker.id);
@@ -240,7 +232,7 @@ if (cluster.isMaster) {
         console.log("connect " + util.getUserIdBySocket(socket));
 
         connect++;
-        // 接続数が最大に達しているときはエラーを即座に返して切断
+        //对最大链接数进行控制
         store.incr(config.connection_key_str + 'redis', function (err, connectionNum) {
             store.get(config.max_connection_key_str, function (err, maxConnection) {
                 if (!maxConnection) {
